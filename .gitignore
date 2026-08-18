@@ -1,0 +1,36 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+.venv/
+venv/
+env/
+
+# IDE
+.vscode/
+.idea/
+
+# Secrets
+.env
+*.key
+*.pem
+.netrc
+credentials*
+
+# Copernicus raw data
+data/raw/
+*.nc
+
+# Generated processed data
+data/processed/
+*.npy
+
+# Large generated files
+*.pt
+*.pth
+*.ckpt
+
+# OS
+.DS_Store
+Thumbs.db
