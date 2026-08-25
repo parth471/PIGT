@@ -34,3 +34,6 @@ data/processed/
 # OS
 .DS_Store
 Thumbs.db
+
+# Large generated datasets
+PIGT_GNN_practice/data/processed_nodes.csv
