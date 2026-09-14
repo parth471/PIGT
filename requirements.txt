@@ -1,0 +1,11 @@
+xarray
+netCDF4
+numpy
+pandas
+scipy
+scikit-learn
+matplotlib
+torch
+copernicusmarine
+cdsapi
+dask

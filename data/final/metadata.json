@@ -1,0 +1,55 @@
+{
+  "region": {
+    "lat_min": 10,
+    "lat_max": 20,
+    "lon_min": 80,
+    "lon_max": 90
+  },
+  "time_range": {
+    "start": "2022-11-01",
+    "end": "2024-12-31"
+  },
+  "temporal_resolution": "daily",
+  "total_timesteps": 792,
+  "history_window_days": 7,
+  "forecast_horizon_days": 1,
+  "feature_order": [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure",
+    "bathymetry",
+    "latitude",
+    "longitude",
+    "sin_day_of_year",
+    "cos_day_of_year"
+  ],
+  "target_order": [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh"
+  ],
+  "n_ocean_nodes": 12204,
+  "grid_shape": [
+    121,
+    121
+  ],
+  "split_fractions": {
+    "train": 0.7,
+    "val": 0.15,
+    "test": 0.15
+  },
+  "n_sequences": {
+    "train": 549,
+    "val": 118,
+    "test": 118
+  },
+  "normalization": "StandardScaler per feature/target channel, fit using training period only. Latitude and longitude use min-max scaling to [-1, 1].",
+  "common_node_definition": "Ocean nodes with complete SST, salinity, U current, V current, and SWH coverage throughout the common period."
+}
