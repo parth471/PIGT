@@ -1,9 +1,0 @@
-numpy
-pandas
-xarray
-netCDF4
-copernicusmarine
-torch
-torch-geometric
-scikit-learn
-matplotlib
