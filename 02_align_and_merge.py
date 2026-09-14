@@ -345,6 +345,34 @@ def main():
         dict(merged.sizes)
     )
 
+    # =========================================================
+    # Restrict to the common temporal overlap
+    # =========================================================
+    # =========================================================
+# Restrict to the final common project period
+# =========================================================
+    common_start = "2022-11-01"
+    common_end = "2024-12-31"
+
+    print(
+        f"Restricting to common project period: "
+        f"{common_start} -> {common_end}"
+    )
+
+    merged = merged.sel(
+        time=slice(common_start, common_end)
+    )
+
+    print(
+        "After common-time restriction:",
+        dict(merged.sizes)
+    )
+
+    print(
+        "After common-time restriction:",
+        dict(merged.sizes)
+    )
+
     print(
         "  >> Compare this against expectations "
         "from Step 0/4 before proceeding."
