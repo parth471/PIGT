@@ -1,39 +1,44 @@
 # Python
 __pycache__/
 *.py[cod]
+*.pyo
 
 # Virtual environment
 .venv/
 venv/
 env/
-
-# IDE
-.vscode/
-.idea/
+pigt_env/
 
 # Secrets
 .env
+.cdsapirc
 *.key
 *.pem
 .netrc
 credentials*
 
-# Copernicus raw data
+# Large raw / processed datasets
 data/raw/
+data/processed/
 *.nc
 
-# Generated processed data
-data/processed/
+# Large generated ML datasets
 *.npy
-
-# Large generated files
+*.pkl
 *.pt
 *.pth
 *.ckpt
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
 
 # OS
 .DS_Store
 Thumbs.db
 
-# Large generated datasets
+# Existing large generated file
 PIGT_GNN_practice/data/processed_nodes.csv
