@@ -6,6 +6,7 @@ scipy
 scikit-learn
 matplotlib
 torch
+torch_geometric
 copernicusmarine
 cdsapi
 dask

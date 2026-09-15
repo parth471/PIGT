@@ -95,28 +95,35 @@ class GCNBaseline(nn.Module):
 # ============================================================
 
 def load_graph():
-
-    graph = torch.load(
-        GRAPH_PATH,
-        map_location="cpu",
-    )
-
-    edge_index = graph["edge_index"]
+    if GRAPH_PATH.exists():
+        graph = torch.load(
+            GRAPH_PATH,
+            map_location="cpu",
+        )
+        edge_index = graph["edge_index"]
+    else:
+        print("Graph file not found at", GRAPH_PATH, "— using synthetic edge_index (2, 97632)")
+        edge_index = torch.randint(0, 12204, (2, 97632), dtype=torch.long)
 
     return edge_index
 
 
 def load_data():
+    x_train_path = DATA_DIR / "X_train.npy"
+    y_train_path = DATA_DIR / "Y_train.npy"
 
-    X_train = np.load(
-        DATA_DIR / "X_train.npy"
-    )
+    if x_train_path.exists() and y_train_path.exists():
+        X_train = np.load(x_train_path)
+        Y_train = np.load(y_train_path)
+        X_last = X_train[:, -1, :, :]
+        x = torch.tensor(X_last[0], dtype=torch.float32)
+        y = torch.tensor(Y_train[0, :, 0], dtype=torch.float32)
+    else:
+        print("Data files not found in", DATA_DIR, "— using synthetic input (12204, 13) and target (12204)")
+        x = torch.randn(12204, 13, dtype=torch.float32)
+        y = torch.randn(12204, dtype=torch.float32)
 
-    Y_train = np.load(
-        DATA_DIR / "Y_train.npy"
-    )
-
-    return X_train, Y_train
+    return x, y
 
 
 # ============================================================
@@ -133,43 +140,7 @@ def main():
     # Load data
     # --------------------------------------------------------
 
-    X_train, Y_train = load_data()
-
-    print("\nDataset:")
-    print("X_train:", X_train.shape)
-    print("Y_train:", Y_train.shape)
-
-    # --------------------------------------------------------
-    # We use the most recent historical timestep
-    #
-    # X:
-    # [samples, 7, nodes, 13]
-    #
-    # Select:
-    # [samples, nodes, 13]
-    # --------------------------------------------------------
-
-    X_last = X_train[:, -1, :, :]
-
-    print(
-        "\nLatest timestep:",
-        X_last.shape,
-    )
-
-    # --------------------------------------------------------
-    # One sample for model test
-    # --------------------------------------------------------
-
-    x = torch.tensor(
-        X_last[0],
-        dtype=torch.float32,
-    )
-
-    # Target SST only
-    y = torch.tensor(
-        Y_train[0, :, 0],
-        dtype=torch.float32,
-    )
+    x, y = load_data()
 
     print(
         "Input tensor:",
@@ -234,7 +205,7 @@ def main():
 
     print(
         "\nInitial MSE:",
-        float(loss),
+        loss.item(),
     )
 
     # --------------------------------------------------------
