@@ -1,0 +1,11 @@
+{
+  "decision": "NO_AUGMENTATION",
+  "applied_to_production_arrays": false,
+  "reason": "Production data is never automatically augmented. A separate controlled experiment is required if useful variation is insufficient.",
+  "threshold_std": 1e-06,
+  "candidate_experiment": {
+    "method": "physics-safe perturbation only after approval",
+    "principle": "preserve observed physical bounds and temporal structure",
+    "baseline": "untouched training data"
+  }
+}

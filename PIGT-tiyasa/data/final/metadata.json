@@ -1,0 +1,123 @@
+{
+  "project": "PIGT - Physics-Informed Graph Transformer",
+  "region": {
+    "latitude_min": 10.0,
+    "latitude_max": 20.0,
+    "longitude_min": 80.0,
+    "longitude_max": 90.0
+  },
+  "source_files": {
+    "sst": "data\\raw\\copernicus_physics\\thetao_bob.nc",
+    "salinity": "data\\raw\\copernicus_physics\\so_bob.nc",
+    "currents": "data\\raw\\copernicus_physics\\currents_bob.nc",
+    "bathymetry": "data\\raw\\copernicus_physics\\bathymetry.nc",
+    "wave": "data\\raw\\copernicus_wave\\vhm0_bob.nc",
+    "era5": "data\\raw\\era5\\era5_bob.nc"
+  },
+  "common_period": {
+    "start": "2022-11-01",
+    "end": "2024-12-31"
+  },
+  "temporal_resolution": "daily",
+  "history_window": "t-6 ... t",
+  "forecast_horizon": "t+1",
+  "history_days": 7,
+  "forecast_horizon_days": 1,
+  "n_input_features": 13,
+  "n_target_variables": 8,
+  "feature_order": [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure",
+    "bathymetry",
+    "latitude",
+    "longitude",
+    "sin_day_of_year",
+    "cos_day_of_year"
+  ],
+  "target_order": [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure"
+  ],
+  "grid_shape": [
+    121,
+    121
+  ],
+  "n_ocean_nodes": 12204,
+  "expected_shapes": {
+    "X": [
+      "B",
+      7,
+      12204,
+      13
+    ],
+    "Y": [
+      "B",
+      12204,
+      8
+    ]
+  },
+  "split": {
+    "train": {
+      "count": 549,
+      "target_start": "2022-11-08",
+      "target_end": "2024-05-09"
+    },
+    "val": {
+      "count": 117,
+      "target_start": "2024-05-10",
+      "target_end": "2024-09-03"
+    },
+    "test": {
+      "count": 119,
+      "target_start": "2024-09-04",
+      "target_end": "2024-12-31"
+    }
+  },
+  "normalization": {
+    "feature_scaler_file": "feature_scaler.pkl",
+    "training_only": true,
+    "method": "StandardScaler for learned numerical channels; fixed [-1,1] scaling for latitude/longitude; identity for sine/cosine time channels.",
+    "target_scalers_saved": true
+  },
+  "cleaning": {
+    "max_short_gap_days": 3,
+    "land_handling": "land cells excluded by bathymetry-derived ocean mask",
+    "persistent_missing_handling": "nodes with persistent missing values in any target variable excluded",
+    "bathymetry_variable": "deptho"
+  },
+  "graph": {
+    "file": "../graph/graph.pt",
+    "k": 8,
+    "num_nodes": 12204,
+    "num_edges": 98294,
+    "coordinates": "coordinates.npy"
+  },
+  "augmentation": {
+    "decision": "NO_AUGMENTATION",
+    "applied_to_final_arrays": false
+  },
+  "files": {
+    "X_train": "X_train.npy",
+    "X_val": "X_val.npy",
+    "X_test": "X_test.npy",
+    "Y_train": "Y_train.npy",
+    "Y_val": "Y_val.npy",
+    "Y_test": "Y_test.npy",
+    "scaler": "feature_scaler.pkl",
+    "metadata": "metadata.json",
+    "coordinates": "coordinates.npy",
+    "node_mask": "node_mask.npy"
+  }
+}

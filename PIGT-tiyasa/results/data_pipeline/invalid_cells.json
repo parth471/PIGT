@@ -1,0 +1,83 @@
+{
+  "sst": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": -5.0,
+    "upper_bound": 45.0
+  },
+  "salinity": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 0.0,
+    "upper_bound": 50.0
+  },
+  "u_current": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": -5.0,
+    "upper_bound": 5.0
+  },
+  "v_current": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": -5.0,
+    "upper_bound": 5.0
+  },
+  "swh": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 156816,
+    "nonfinite_ocean_percent": 1.5965166908563133,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 0.0,
+    "upper_bound": 30.0
+  },
+  "wind_speed": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 0.0,
+    "upper_bound": 100.0
+  },
+  "wind_direction": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 0.0,
+    "upper_bound": 360.0
+  },
+  "pressure": {
+    "ocean_cells_checked": 9822384,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 800.0,
+    "upper_bound": 1100.0
+  },
+  "bathymetry": {
+    "ocean_cells_checked": 12402,
+    "nonfinite_ocean_count": 0,
+    "nonfinite_ocean_percent": 0.0,
+    "out_of_range_count": 0,
+    "out_of_range_percent": 0.0,
+    "lower_bound": 0.0,
+    "upper_bound": 12000.0
+  }
+}

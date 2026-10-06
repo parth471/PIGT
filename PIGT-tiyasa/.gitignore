@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+*.pyo
+
+# Virtual environment
+venv/
+.venv/
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Python cache
+.pytest_cache/
+
+# Raw scientific datasets
+data/raw/
+
+# Large generated arrays
+*.npy
+data/processed/*.nc
+data/graph/*.pt
+
+# Python serialized files
+*.pkl
+
+# Logs
+*.log
