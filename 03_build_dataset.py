@@ -548,21 +548,30 @@ def main():
 
     target_components = {
 
-        "sst":
-            series["sst"],
+    "sst":
+        series["sst"],
 
-        "salinity":
-            series["salinity"],
+    "salinity":
+        series["salinity"],
 
-        "u_current":
-            series["u_current"],
+    "u_current":
+        series["u_current"],
 
-        "v_current":
-            series["v_current"],
+    "v_current":
+        series["v_current"],
 
-        "swh":
-            series["swh"],
-    }
+    "swh":
+        series["swh"],
+
+    "wind_speed":
+        series["wind_speed"],
+
+    "wind_direction":
+        series["wind_direction"],
+
+    "pressure":
+        series["pressure"],
+}
 
     Y_full = np.stack(
         [

@@ -61,10 +61,10 @@ def main():
     print("X_val:  ", X_val.shape, " Y_val:  ", Y_val.shape)
     print("X_test: ", X_test.shape, " Y_test: ", Y_test.shape)
     check(X_train.ndim == 4, "X arrays are 4-D [B, T, N, F]")
-    check(Y_train.ndim == 3, "Y arrays are 3-D [B, N, 5]")
-    check(Y_train.shape[-1] == 5, "Y has exactly 5 target channels")
+    check(Y_train.ndim == 3, "Y arrays are 3-D [B, N, 8]")
+    check(Y_train.shape[-1] == 8, "Y has exactly 8 target channels")
     check(X_train.shape[1] == HISTORY_DAYS, f"History window is {HISTORY_DAYS} days")
-    check(len(TARGET_ORDER) == 5, "TARGET_ORDER has exactly 5 entries")
+    check(len(TARGET_ORDER) == 8, "TARGET_ORDER has exactly 8 entries")
     check(X_train.shape[-1] == len(FEATURE_ORDER), "Feature count matches FEATURE_ORDER length")
 
     print("\n" + "=" * 70)
@@ -109,7 +109,6 @@ def main():
     stds = X_train.reshape(-1, X_train.shape[-1]).std(axis=0)
     for i, name in enumerate(FEATURE_ORDER):
         print(f"  {name:20s} mean={means[i]:+.3f}  std={stds[i]:.3f}")
-
     print("\n" + "=" * 70)
     print("GEOGRAPHIC REGION")
     print("=" * 70)
@@ -130,11 +129,22 @@ def main():
     print("=" * 70)
     print("Feature order:", metadata["feature_order"])
     print("Target order: ", metadata["target_order"])
-    check(
-        metadata["target_order"] == ["sst", "salinity", "u_current", "v_current", "swh"],
-        "Target order is exactly [sst, salinity, u_current, v_current, swh]",
-    )
 
+    expected_targets = [
+        "sst",
+        "salinity",
+        "u_current",
+        "v_current",
+        "swh",
+        "wind_speed",
+        "wind_direction",
+        "pressure",
+    ]
+
+    check(
+        metadata["target_order"] == expected_targets,
+        "Target order contains all 8 required dynamic variables",
+    )
     print("\n" + "=" * 70)
     print("SAMPLE BATCH")
     print("=" * 70)

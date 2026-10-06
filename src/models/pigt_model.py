@@ -5,7 +5,7 @@ from torch_geometric.nn import GCNConv
 
 class PIGTModel(nn.Module):
     """
-    Graph + Temporal Transformer model for next-day SST forecasting.
+    Graph + Temporal Transformer model for next-day multi-target forecasting.
 
     Input:
         X: [B, T, N, F]
@@ -16,7 +16,7 @@ class PIGTModel(nn.Module):
         F = number of input features (13)
 
     Output:
-        Future SST: [B, N]
+        Future targets: [B, N, 8]
     """
 
     def __init__(
@@ -89,14 +89,14 @@ class PIGTModel(nn.Module):
         )
 
         # ----------------------------------------------------
-        # SST prediction head
+        # Eight-target prediction head
         # ----------------------------------------------------
 
         self.prediction_head = nn.Sequential(
             nn.Linear(hidden_dim, hidden_dim),
             nn.GELU(),
             nn.Dropout(dropout),
-            nn.Linear(hidden_dim, 1),
+            nn.Linear(hidden_dim, 8),
         )
 
     def forward(
@@ -116,7 +116,7 @@ class PIGTModel(nn.Module):
         Returns
         -------
         prediction:
-            [B, N]
+            [B, N, 8]
         """
 
         B, T, N, F = x.shape
@@ -311,19 +311,15 @@ class PIGTModel(nn.Module):
         )
 
         # ----------------------------------------------------
-        # 5. Predict next-day SST
+        # 5. Predict next-day values for all eight target channels
         #
         # [B,N,H]
         #       ↓
-        # [B,N,1]
-        #       ↓
-        # [B,N]
+        # [B,N,8]
         # ----------------------------------------------------
 
         prediction = self.prediction_head(
             x
         )
-
-        prediction = prediction.squeeze(-1)
 
         return prediction

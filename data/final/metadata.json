@@ -33,7 +33,10 @@
     "salinity",
     "u_current",
     "v_current",
-    "swh"
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure"
   ],
   "n_ocean_nodes": 12204,
   "grid_shape": [

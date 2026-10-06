@@ -44,7 +44,16 @@ FEATURE_ORDER = [
     "bathymetry", "latitude", "longitude",                # static / spatial
     "sin_day_of_year", "cos_day_of_year",                 # seasonal encoding
 ]
-TARGET_ORDER = ["sst", "salinity", "u_current", "v_current", "swh"]
+TARGET_ORDER = [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure",
+]
 
 # ============================================================
 # PATHS

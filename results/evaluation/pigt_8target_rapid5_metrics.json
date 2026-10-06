@@ -1,0 +1,82 @@
+{
+  "run_label": "RAPID5 / PRELIMINARY - PERSON 2 HANDOFF",
+  "checkpoint": "results\\checkpoints\\pigt_8target_rapid5.pt",
+  "split": "test",
+  "n_samples": 118,
+  "target_order": [
+    "sst",
+    "salinity",
+    "u_current",
+    "v_current",
+    "swh",
+    "wind_speed",
+    "wind_direction",
+    "pressure"
+  ],
+  "input_shape": [
+    "B",
+    7,
+    12204,
+    13
+  ],
+  "output_shape": [
+    "B",
+    12204,
+    8
+  ],
+  "per_target_metrics": {
+    "sst": {
+      "mae": 0.6962921953118382,
+      "rmse": 0.856401377286119,
+      "r2": -0.005978248125584784,
+      "units": "degrees_C"
+    },
+    "salinity": {
+      "mae": 0.5030577896493088,
+      "rmse": 0.7229374178097276,
+      "r2": 0.8778491879330101,
+      "units": "1e-3"
+    },
+    "u_current": {
+      "mae": 0.11813619074837817,
+      "rmse": 0.15530881678727332,
+      "r2": 0.6845036547114929,
+      "units": "m s-1"
+    },
+    "v_current": {
+      "mae": 0.12543079905229185,
+      "rmse": 0.17098639690169892,
+      "r2": 0.7211316116752617,
+      "units": "m s-1"
+    },
+    "swh": {
+      "mae": 0.34313928639844593,
+      "rmse": 0.48144570020570404,
+      "r2": 0.27827642304173394,
+      "units": "m"
+    },
+    "wind_speed": {
+      "mae": 1.7475086525350383,
+      "rmse": 2.2542566894150267,
+      "r2": 0.21982033232003628,
+      "units": "m s-1"
+    },
+    "wind_direction": {
+      "circular_mae_degrees": 51.32956390374925,
+      "circular_rmse_degrees": 70.6706968466182,
+      "r2": null,
+      "r2_note": "Omitted: ordinary R\u00b2 is not appropriate for a circular angle target."
+    },
+    "pressure": {
+      "mae": 2.035804046793103,
+      "rmse": 2.8809968569260787,
+      "r2": 0.08595542464486239,
+      "units": "hPa"
+    }
+  },
+  "overall_standardized_error": {
+    "standardized_mae": 0.5147791049897239,
+    "standardized_rmse": 0.7060520915096168,
+    "aggregation": "Pooled equally over all target values: ordinary standardized error for seven linear targets; shortest wrapped angular error divided by the wind_direction scaler scale for direction."
+  }
+}

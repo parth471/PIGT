@@ -1,9 +1,11 @@
 from pathlib import Path
+import os
+import json
+import pickle
 import time
 
 import numpy as np
 import torch
-import torch.nn.functional as F
 
 from pigt_model import PIGTModel
 
@@ -28,8 +30,16 @@ CHECKPOINT_DIR.mkdir(
 # Training configuration
 # ============================================================
 
-EPOCHS = 1
+MAX_EPOCHS = int(os.environ.get("PIGT_MAX_EPOCHS", "50"))
+MAX_TRAIN_SAMPLES = os.environ.get("PIGT_MAX_TRAIN_SAMPLES")
+MAX_TRAIN_SAMPLES = int(MAX_TRAIN_SAMPLES) if MAX_TRAIN_SAMPLES else None
+CHECKPOINT_NAME = os.environ.get("PIGT_CHECKPOINT_NAME", "pigt_8target_best.pt")
+RUN_LABEL = os.environ.get("PIGT_RUN_LABEL", "FULL TRAINING")
 BATCH_SIZE = 1
+TARGET_ORDER = [
+    "sst", "salinity", "u_current", "v_current", "swh",
+    "wind_speed", "wind_direction", "pressure",
+]
 
 LEARNING_RATE = 1e-3
 WEIGHT_DECAY = 1e-5
@@ -142,6 +152,62 @@ def create_model():
     return model.to(DEVICE)
 
 
+def load_target_scalers():
+    with open(DATA_DIR / "feature_scaler.pkl", "rb") as f:
+        scaler_bundle = pickle.load(f)
+
+    target_scalers = scaler_bundle["targets"]
+    if list(target_scalers) != TARGET_ORDER:
+        raise ValueError(
+            "Target scaler order does not match the required target order: "
+            f"{list(target_scalers)}"
+        )
+
+    with open(DATA_DIR / "metadata.json", encoding="utf-8") as f:
+        metadata = json.load(f)
+    if metadata.get("target_order") != TARGET_ORDER:
+        raise ValueError(
+            "Dataset metadata target order does not match the required order: "
+            f"{metadata.get('target_order')}"
+        )
+
+    direction_scaler = target_scalers["wind_direction"]
+    if not hasattr(direction_scaler, "mean_") or not hasattr(direction_scaler, "scale_"):
+        raise TypeError("wind_direction scaler must expose mean_ and scale_.")
+
+    return target_scalers
+
+
+def eight_target_loss(prediction, target, target_scalers):
+    """Equal-weight standardized MSE with wrapped direction error."""
+    if prediction.shape != target.shape or prediction.shape[-1] != len(TARGET_ORDER):
+        raise ValueError(
+            f"Expected matching [B, N, 8] tensors, got "
+            f"{tuple(prediction.shape)} and {tuple(target.shape)}"
+        )
+
+    channel_losses = []
+    for channel, name in enumerate(TARGET_ORDER):
+        if name == "wind_direction":
+            scaler = target_scalers[name]
+            mean = prediction.new_tensor(float(scaler.mean_[0]))
+            scale = prediction.new_tensor(float(scaler.scale_[0]))
+            pred_degrees = prediction[..., channel] * scale + mean
+            target_degrees = target[..., channel] * scale + mean
+            delta_radians = torch.deg2rad(pred_degrees - target_degrees)
+            wrapped_radians = torch.atan2(
+                torch.sin(delta_radians), torch.cos(delta_radians)
+            )
+            wrapped_standardized_error = torch.rad2deg(wrapped_radians) / scale
+            channel_losses.append(wrapped_standardized_error.square().mean())
+        else:
+            channel_losses.append(
+                (prediction[..., channel] - target[..., channel]).square().mean()
+            )
+
+    return torch.stack(channel_losses).mean()
+
+
 # ============================================================
 # Train one epoch
 # ============================================================
@@ -152,6 +218,7 @@ def train_one_epoch(
     X_train,
     Y_train,
     edge_index,
+    target_scalers,
 ):
 
     model.train()
@@ -186,10 +253,9 @@ def train_one_epoch(
             )
         ).float()
 
-        # SST target only = target channel 0
         y_batch = torch.from_numpy(
             np.asarray(
-                Y_train[batch_indices, :, 0]
+                Y_train[batch_indices]
             )
         ).float()
 
@@ -213,10 +279,7 @@ def train_one_epoch(
         # Data loss
         # ----------------------------------------------------
 
-        loss = F.mse_loss(
-            prediction,
-            y_batch,
-        )
+        loss = eight_target_loss(prediction, y_batch, target_scalers)
 
         # ----------------------------------------------------
         # Backpropagation
@@ -258,6 +321,7 @@ def validate(
     X_val,
     Y_val,
     edge_index,
+    target_scalers,
 ):
 
     model.eval()
@@ -286,13 +350,7 @@ def validate(
         ).float()
 
         y_batch = torch.from_numpy(
-            np.asarray(
-                Y_val[
-                    batch_indices,
-                    :,
-                    0,
-                ]
-            )
+            np.asarray(Y_val[batch_indices])
         ).float()
 
         x_batch = x_batch.to(DEVICE)
@@ -303,10 +361,7 @@ def validate(
             edge_index,
         )
 
-        loss = F.mse_loss(
-            prediction,
-            y_batch,
-        )
+        loss = eight_target_loss(prediction, y_batch, target_scalers)
 
         total_loss += (
             loss.item()
@@ -323,7 +378,7 @@ def validate(
 def main():
 
     print("=" * 70)
-    print("PIGT — GRAPH + TEMPORAL TRANSFORMER TRAINING")
+    print(f"PIGT — {RUN_LABEL}")
     print("=" * 70)
 
     print("\nDevice:", DEVICE)
@@ -333,6 +388,27 @@ def main():
     # --------------------------------------------------------
 
     X_train, Y_train, X_val, Y_val = load_data()
+    target_scalers = load_target_scalers()
+
+    if MAX_TRAIN_SAMPLES is not None:
+        if MAX_TRAIN_SAMPLES < 1:
+            raise ValueError("PIGT_MAX_TRAIN_SAMPLES must be positive.")
+        X_train = X_train[:MAX_TRAIN_SAMPLES]
+        Y_train = Y_train[:MAX_TRAIN_SAMPLES]
+        print(f"Training subset: first {len(X_train)} training sequences")
+
+    expected_x_tail = (7, 12204, 13)
+    expected_y_tail = (12204, 8)
+    if X_train.shape[1:] != expected_x_tail or X_val.shape[1:] != expected_x_tail:
+        raise ValueError(
+            f"Expected X samples shaped [7, 12204, 13], got "
+            f"{X_train.shape} and {X_val.shape}"
+        )
+    if Y_train.shape[1:] != expected_y_tail or Y_val.shape[1:] != expected_y_tail:
+        raise ValueError(
+            f"Expected Y samples shaped [12204, 8], got "
+            f"{Y_train.shape} and {Y_val.shape}"
+        )
 
     edge_index = load_graph()
 
@@ -365,12 +441,17 @@ def main():
     # --------------------------------------------------------
 
     best_val_loss = float("inf")
+    best_val_epoch = 0
+    epoch_history = []
     epochs_without_improvement = 0
 
-    checkpoint_path = (
-        CHECKPOINT_DIR
-        / "pigt_best.pt"
-    )
+    if Path(CHECKPOINT_NAME).name != CHECKPOINT_NAME:
+        raise ValueError("PIGT_CHECKPOINT_NAME must be a filename, not a path.")
+    if CHECKPOINT_NAME in {"pigt_best.pt", "pigt_8target_best.pt"}:
+        raise ValueError("Refusing to overwrite an existing full-training checkpoint.")
+    checkpoint_path = CHECKPOINT_DIR / CHECKPOINT_NAME
+    if checkpoint_path.exists():
+        raise FileExistsError(f"Refusing to overwrite checkpoint: {checkpoint_path}")
 
     # --------------------------------------------------------
     # Epoch loop
@@ -378,12 +459,12 @@ def main():
 
     for epoch in range(
         1,
-        EPOCHS + 1,
+        MAX_EPOCHS + 1,
     ):
 
         print("\n" + "=" * 70)
         print(
-            f"Epoch {epoch}/{EPOCHS}"
+            f"Epoch {epoch}/{MAX_EPOCHS}"
         )
         print("=" * 70)
 
@@ -395,6 +476,7 @@ def main():
             X_train,
             Y_train,
             edge_index,
+            target_scalers,
         )
 
         val_loss = validate(
@@ -402,9 +484,16 @@ def main():
             X_val,
             Y_val,
             edge_index,
+            target_scalers,
         )
 
         elapsed = time.time() - start_time
+        epoch_history.append({
+            "epoch": epoch,
+            "train_loss": train_loss,
+            "val_loss": val_loss,
+            "epoch_time_sec": elapsed,
+        })
 
         print(
             f"\nTrain loss: {train_loss:.6f}"
@@ -425,6 +514,7 @@ def main():
         if val_loss < best_val_loss:
 
             best_val_loss = val_loss
+            best_val_epoch = epoch
             epochs_without_improvement = 0
 
             torch.save(
@@ -442,13 +532,17 @@ def main():
                         "learning_rate": LEARNING_RATE,
                         "weight_decay": WEIGHT_DECAY,
                         "batch_size": BATCH_SIZE,
+                        "max_epochs": MAX_EPOCHS,
+                        "target_order": TARGET_ORDER,
+                        "training_samples": int(X_train.shape[0]),
+                        "run_label": RUN_LABEL,
                     },
                 },
                 checkpoint_path,
             )
 
             print(
-                "\n✓ New best model saved:"
+                "\n[OK] New best model saved:"
             )
 
             print(
@@ -492,6 +586,14 @@ def main():
         "Best validation loss:",
         best_val_loss,
     )
+
+    print("Best validation epoch:", best_val_epoch)
+    if epoch_history:
+        improved_after_epoch_one = min(
+            (entry["val_loss"] for entry in epoch_history[1:]),
+            default=float("inf"),
+        ) < epoch_history[0]["val_loss"]
+        print("Validation improved over epoch 1:", improved_after_epoch_one)
 
     print(
         "Best checkpoint:",
