@@ -1,0 +1,431 @@
+{
+  "files": {
+    "sst": {
+      "label": "sst",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\thetao_bob.nc",
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "variables": [
+        "thetao"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 121
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 121
+      },
+      "time": {
+        "coordinate": "time",
+        "count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "monotonic_increasing": true,
+        "unique_step_hours": [
+          24.0
+        ]
+      },
+      "variable_statistics": {
+        "thetao": {
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "degrees_C",
+          "long_name": "Temperature",
+          "standard_name": "sea_water_potential_temperature",
+          "missing_count": 2115855,
+          "missing_percent": 15.292671265623932,
+          "infinite_count": 0,
+          "min": 22.722942352294922,
+          "max": 33.25794982910156,
+          "mean": 29.083984375,
+          "std": 1.1894254684448242
+        }
+      }
+    },
+    "salinity": {
+      "label": "salinity",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\so_bob.nc",
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "variables": [
+        "so"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 121
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 121
+      },
+      "time": {
+        "coordinate": "time",
+        "count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "monotonic_increasing": true,
+        "unique_step_hours": [
+          24.0
+        ]
+      },
+      "variable_statistics": {
+        "so": {
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "1e-3",
+          "long_name": "Salinity",
+          "standard_name": "sea_water_salinity",
+          "missing_count": 2115855,
+          "missing_percent": 15.292671265623932,
+          "infinite_count": 0,
+          "min": 19.939964294433594,
+          "max": 35.716434478759766,
+          "mean": 32.48933792114258,
+          "std": 1.5369477272033691
+        }
+      }
+    },
+    "currents": {
+      "label": "currents",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\currents_bob.nc",
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "variables": [
+        "uo",
+        "vo"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 121
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 121
+      },
+      "time": {
+        "coordinate": "time",
+        "count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "monotonic_increasing": true,
+        "unique_step_hours": [
+          24.0
+        ]
+      },
+      "variable_statistics": {
+        "uo": {
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Eastward velocity",
+          "standard_name": "eastward_sea_water_velocity",
+          "missing_count": 2115855,
+          "missing_percent": 15.292671265623932,
+          "infinite_count": 0,
+          "min": -1.7259503602981567,
+          "max": 2.186163902282715,
+          "mean": 0.014048834331333637,
+          "std": 0.2899446487426758
+        },
+        "vo": {
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Northward velocity",
+          "standard_name": "northward_sea_water_velocity",
+          "missing_count": 2115855,
+          "missing_percent": 15.292671265623932,
+          "infinite_count": 0,
+          "min": -2.29286527633667,
+          "max": 1.799669623374939,
+          "mean": 0.017017189413309097,
+          "std": 0.2741657793521881
+        }
+      }
+    },
+    "bathymetry": {
+      "label": "bathymetry",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\bathymetry.nc",
+      "dimensions": {
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "latitude",
+        "longitude"
+      ],
+      "variables": [
+        "deptho"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 121
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 121
+      },
+      "time": null,
+      "variable_statistics": {
+        "deptho": {
+          "shape": [
+            121,
+            121
+          ],
+          "dtype": "float64",
+          "units": "m",
+          "long_name": null,
+          "standard_name": "sea_floor_depth_below_geoid",
+          "missing_count": 2239,
+          "missing_percent": 15.292671265623932,
+          "infinite_count": 0,
+          "min": 7.92956018447876,
+          "max": 3992.48388671875,
+          "mean": 2870.3416225524934,
+          "std": 937.6199213239398
+        }
+      },
+      "bathymetry_variable": "deptho"
+    },
+    "wave": {
+      "label": "wave",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_wave\\vhm0_bob.nc",
+      "dimensions": {
+        "time": 6335,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "variables": [
+        "VHM0"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 121
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 121
+      },
+      "time": {
+        "coordinate": "time",
+        "count": 6335,
+        "start": "2022-11-01 03:00:00",
+        "end": "2024-12-31 21:00:00",
+        "duplicate_timestamps": 0,
+        "monotonic_increasing": true,
+        "unique_step_hours": [
+          3.0
+        ]
+      },
+      "variable_statistics": {
+        "VHM0": {
+          "shape": [
+            6335,
+            121,
+            121
+          ],
+          "dtype": "float64",
+          "units": "m",
+          "long_name": "Spectral significant wave height (Hm0)",
+          "standard_name": "sea_surface_wave_significant_height",
+          "missing_count": 14918925,
+          "missing_percent": 16.084966873847414,
+          "infinite_count": 0,
+          "min": 0.05999999865889549,
+          "max": 10.439999766647816,
+          "mean": 1.4966709185650018,
+          "std": 0.6941357614889525
+        }
+      }
+    },
+    "era5": {
+      "label": "era5",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\era5\\era5_bob.nc",
+      "dimensions": {
+        "valid_time": 4384,
+        "latitude": 41,
+        "longitude": 41
+      },
+      "coordinates": [
+        "number",
+        "valid_time",
+        "latitude",
+        "longitude",
+        "expver"
+      ],
+      "variables": [
+        "u10",
+        "v10",
+        "msl"
+      ],
+      "latitude": {
+        "name": "latitude",
+        "min": 10.0,
+        "max": 20.0,
+        "count": 41
+      },
+      "longitude": {
+        "name": "longitude",
+        "min": 80.0,
+        "max": 90.0,
+        "count": 41
+      },
+      "time": {
+        "coordinate": "valid_time",
+        "count": 4384,
+        "start": "2022-01-01 00:00:00",
+        "end": "2024-12-31 18:00:00",
+        "duplicate_timestamps": 0,
+        "monotonic_increasing": true,
+        "unique_step_hours": [
+          6.0
+        ]
+      },
+      "variable_statistics": {
+        "u10": {
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "m s**-1",
+          "long_name": "10 metre U wind component",
+          "standard_name": "unknown",
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "infinite_count": 0,
+          "min": -22.71343994140625,
+          "max": 27.497100830078125,
+          "mean": 0.494823157787323,
+          "std": 4.4402689933776855
+        },
+        "v10": {
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "m s**-1",
+          "long_name": "10 metre V wind component",
+          "standard_name": "unknown",
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "infinite_count": 0,
+          "min": -23.667434692382812,
+          "max": 25.513412475585938,
+          "mean": 1.3172531127929688,
+          "std": 3.9967474937438965
+        },
+        "msl": {
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "Pa",
+          "long_name": "Mean sea level pressure",
+          "standard_name": "air_pressure_at_mean_sea_level",
+          "missing_count": 0,
+          "missing_percent": 0.0,
+          "infinite_count": 0,
+          "min": 97236.375,
+          "max": 102183.25,
+          "mean": 100887.5625,
+          "std": 428.7507019042969
+        }
+      }
+    }
+  },
+  "expected_region": {
+    "latitude": [
+      10.0,
+      20.0
+    ],
+    "longitude": [
+      80.0,
+      90.0
+    ]
+  }
+}

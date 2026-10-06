@@ -1,0 +1,748 @@
+{
+  "project": "PIGT - Bay of Bengal Multivariate Forecasting",
+  "inspection": {
+    "latitude_range": [
+      10.0,
+      20.0
+    ],
+    "longitude_range": [
+      80.0,
+      90.0
+    ],
+    "files_checked": 6
+  },
+  "datasets": [
+    {
+      "dataset": "copernicus_physics_thetao",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\thetao_bob.nc",
+      "exists": true,
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "data_variables": [
+        "thetao"
+      ],
+      "attributes": {
+        "Conventions": "CF-1.8",
+        "area": "Global",
+        "contact": "https://marine.copernicus.eu/contact",
+        "credit": "E.U. Copernicus Marine Service Information (CMEMS)",
+        "institution": "Mercator Ocean International",
+        "licence": "http://marine.copernicus.eu/services-portfolio/service-commitments-and-licence/",
+        "producer": "CMEMS - Global Monitoring and Forecasting Centre",
+        "references": "http://marine.copernicus.eu",
+        "source": "MOI GLO12",
+        "title": "daily mean fields from Global Ocean Physics Analysis and Forecast updated Daily",
+        "copernicusmarine_version": "2.4.1"
+      },
+      "time": {
+        "time_coordinate": "time",
+        "time_count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "median_step_hours": 24.0,
+        "unique_steps_hours": [
+          24.0
+        ]
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 121,
+        "longitude_count": 121,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": "depth",
+        "depth_count": 1,
+        "depth_min": 0.49402499198913574,
+        "depth_max": 0.49402499198913574
+      },
+      "expected_variables": {
+        "expected": [
+          "thetao"
+        ],
+        "found": [
+          "thetao"
+        ],
+        "missing": [],
+        "all_expected_present": true,
+        "all_dataset_variables": [
+          "thetao"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "thetao",
+          "exists": true,
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "degrees_C",
+          "long_name": "Temperature",
+          "standard_name": "sea_water_potential_temperature",
+          "total_cells": 13835745,
+          "nan_count": 2115855,
+          "inf_count": 0,
+          "missing_percent": 15.292671265623934,
+          "min": 22.722942352294922,
+          "max": 33.25794982910156,
+          "mean": 29.083984375,
+          "std": 1.1894254684448242
+        }
+      ]
+    },
+    {
+      "dataset": "copernicus_physics_salinity",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\so_bob.nc",
+      "exists": true,
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "data_variables": [
+        "so"
+      ],
+      "attributes": {
+        "Conventions": "CF-1.8",
+        "area": "Global",
+        "contact": "https://marine.copernicus.eu/contact",
+        "credit": "E.U. Copernicus Marine Service Information (CMEMS)",
+        "institution": "Mercator Ocean International",
+        "licence": "http://marine.copernicus.eu/services-portfolio/service-commitments-and-licence/",
+        "producer": "CMEMS - Global Monitoring and Forecasting Centre",
+        "references": "http://marine.copernicus.eu",
+        "source": "MOI GLO12",
+        "title": "daily mean fields from Global Ocean Physics Analysis and Forecast updated Daily",
+        "copernicusmarine_version": "2.4.1"
+      },
+      "time": {
+        "time_coordinate": "time",
+        "time_count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "median_step_hours": 24.0,
+        "unique_steps_hours": [
+          24.0
+        ]
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 121,
+        "longitude_count": 121,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": "depth",
+        "depth_count": 1,
+        "depth_min": 0.49402499198913574,
+        "depth_max": 0.49402499198913574
+      },
+      "expected_variables": {
+        "expected": [
+          "so"
+        ],
+        "found": [
+          "so"
+        ],
+        "missing": [],
+        "all_expected_present": true,
+        "all_dataset_variables": [
+          "so"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "so",
+          "exists": true,
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "1e-3",
+          "long_name": "Salinity",
+          "standard_name": "sea_water_salinity",
+          "total_cells": 13835745,
+          "nan_count": 2115855,
+          "inf_count": 0,
+          "missing_percent": 15.292671265623934,
+          "min": 19.939964294433594,
+          "max": 35.716434478759766,
+          "mean": 32.48933792114258,
+          "std": 1.5369477272033691
+        }
+      ]
+    },
+    {
+      "dataset": "copernicus_physics_currents",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\currents_bob.nc",
+      "exists": true,
+      "dimensions": {
+        "time": 945,
+        "depth": 1,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "depth",
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "data_variables": [
+        "uo",
+        "vo"
+      ],
+      "attributes": {
+        "Conventions": "CF-1.8",
+        "area": "Global",
+        "contact": "https://marine.copernicus.eu/contact",
+        "credit": "E.U. Copernicus Marine Service Information (CMEMS)",
+        "institution": "Mercator Ocean International",
+        "licence": "http://marine.copernicus.eu/services-portfolio/service-commitments-and-licence/",
+        "producer": "CMEMS - Global Monitoring and Forecasting Centre",
+        "references": "http://marine.copernicus.eu",
+        "source": "MOI GLO12",
+        "title": "daily mean fields from Global Ocean Physics Analysis and Forecast updated Daily",
+        "copernicusmarine_version": "2.4.1"
+      },
+      "time": {
+        "time_coordinate": "time",
+        "time_count": 945,
+        "start": "2022-06-01 00:00:00",
+        "end": "2024-12-31 00:00:00",
+        "duplicate_timestamps": 0,
+        "median_step_hours": 24.0,
+        "unique_steps_hours": [
+          24.0
+        ]
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 121,
+        "longitude_count": 121,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": "depth",
+        "depth_count": 1,
+        "depth_min": 0.49402499198913574,
+        "depth_max": 0.49402499198913574
+      },
+      "expected_variables": {
+        "expected": [
+          "uo",
+          "vo"
+        ],
+        "found": [
+          "uo",
+          "vo"
+        ],
+        "missing": [],
+        "all_expected_present": true,
+        "all_dataset_variables": [
+          "uo",
+          "vo"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "uo",
+          "exists": true,
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Eastward velocity",
+          "standard_name": "eastward_sea_water_velocity",
+          "total_cells": 13835745,
+          "nan_count": 2115855,
+          "inf_count": 0,
+          "missing_percent": 15.292671265623934,
+          "min": -1.7259503602981567,
+          "max": 2.186163902282715,
+          "mean": 0.014048834331333637,
+          "std": 0.2899446487426758
+        },
+        {
+          "variable": "vo",
+          "exists": true,
+          "dimensions": [
+            "time",
+            "depth",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            945,
+            1,
+            121,
+            121
+          ],
+          "dtype": "float32",
+          "units": "m s-1",
+          "long_name": "Northward velocity",
+          "standard_name": "northward_sea_water_velocity",
+          "total_cells": 13835745,
+          "nan_count": 2115855,
+          "inf_count": 0,
+          "missing_percent": 15.292671265623934,
+          "min": -2.29286527633667,
+          "max": 1.799669623374939,
+          "mean": 0.017017189413309097,
+          "std": 0.2741657793521881
+        }
+      ]
+    },
+    {
+      "dataset": "copernicus_physics_bathymetry",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_physics\\bathymetry.nc",
+      "exists": true,
+      "dimensions": {
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "latitude",
+        "longitude"
+      ],
+      "data_variables": [
+        "deptho"
+      ],
+      "attributes": {
+        "author": "Mercator Ocean International",
+        "creation_date": "2023-02-25 23:31:32.146714",
+        "references": "http://marine.copernicus.eu",
+        "copernicusmarine_version": "2.4.1"
+      },
+      "time": {
+        "time_coordinate": null,
+        "time_count": null,
+        "start": null,
+        "end": null,
+        "duplicate_timestamps": null,
+        "median_step_hours": null,
+        "unique_steps_hours": []
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 121,
+        "longitude_count": 121,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": null,
+        "depth_count": null,
+        "depth_min": null,
+        "depth_max": null
+      },
+      "expected_variables": {
+        "expected": [
+          "depth",
+          "mask"
+        ],
+        "found": [],
+        "missing": [
+          "depth",
+          "mask"
+        ],
+        "all_expected_present": false,
+        "all_dataset_variables": [
+          "deptho"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "deptho",
+          "exists": true,
+          "dimensions": [
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            121,
+            121
+          ],
+          "dtype": "float64",
+          "units": "m",
+          "long_name": "not specified",
+          "standard_name": "sea_floor_depth_below_geoid",
+          "total_cells": 14641,
+          "nan_count": 2239,
+          "inf_count": 0,
+          "missing_percent": 15.292671265623934,
+          "min": 7.92956018447876,
+          "max": 3992.48388671875,
+          "mean": 2870.3416225524934,
+          "std": 937.6199213239398
+        }
+      ]
+    },
+    {
+      "dataset": "copernicus_wave",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\copernicus_wave\\vhm0_bob.nc",
+      "exists": true,
+      "dimensions": {
+        "time": 6335,
+        "latitude": 121,
+        "longitude": 121
+      },
+      "coordinates": [
+        "latitude",
+        "longitude",
+        "time"
+      ],
+      "data_variables": [
+        "VHM0"
+      ],
+      "attributes": {
+        "Conventions": "CF-1.6",
+        "area": "GLO",
+        "contact": "servicedesk.cmems@mercator-ocean.eu",
+        "credit": "E.U. Copernicus Marine Service Information (CMEMS)",
+        "geospatial_lat_max": "90.0",
+        "geospatial_lat_min": "-80.0",
+        "geospatial_lat_step": "0.08333587646484375",
+        "geospatial_lat_units": "degree",
+        "geospatial_lon_max": "179.9167022705078",
+        "geospatial_lon_min": "-180.0",
+        "geospatial_lon_step": "0.0833282470703125",
+        "geospatial_lon_units": "degree",
+        "institution": "METEO-FRANCE",
+        "producer": "CMEMS - Global Monitoring and Forecasting Centre",
+        "product": "GLOBAL_ANALYSIS_FORECAST_WAV_001_027",
+        "references": "http://marine.copernicus.eu",
+        "copernicusmarine_version": "2.4.1"
+      },
+      "time": {
+        "time_coordinate": "time",
+        "time_count": 6335,
+        "start": "2022-11-01 03:00:00",
+        "end": "2024-12-31 21:00:00",
+        "duplicate_timestamps": 0,
+        "median_step_hours": 3.0,
+        "unique_steps_hours": [
+          3.0
+        ]
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 121,
+        "longitude_count": 121,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": null,
+        "depth_count": null,
+        "depth_min": null,
+        "depth_max": null
+      },
+      "expected_variables": {
+        "expected": [
+          "VHM0"
+        ],
+        "found": [
+          "VHM0"
+        ],
+        "missing": [],
+        "all_expected_present": true,
+        "all_dataset_variables": [
+          "VHM0"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "VHM0",
+          "exists": true,
+          "dimensions": [
+            "time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            6335,
+            121,
+            121
+          ],
+          "dtype": "float64",
+          "units": "m",
+          "long_name": "Spectral significant wave height (Hm0)",
+          "standard_name": "sea_surface_wave_significant_height",
+          "total_cells": 92750735,
+          "nan_count": 14918925,
+          "inf_count": 0,
+          "missing_percent": 16.084966873847414,
+          "min": 0.05999999865889549,
+          "max": 10.439999766647816,
+          "mean": 1.4966709185650018,
+          "std": 0.6941357614889525
+        }
+      ]
+    },
+    {
+      "dataset": "era5",
+      "file": "C:\\Users\\Aditi N\\Downloads\\PIGT_Data_Pipeline_Code\\PIGT-tiyasa\\data\\raw\\era5\\era5_bob.nc",
+      "exists": true,
+      "dimensions": {
+        "valid_time": 4384,
+        "latitude": 41,
+        "longitude": 41
+      },
+      "coordinates": [
+        "number",
+        "valid_time",
+        "latitude",
+        "longitude",
+        "expver"
+      ],
+      "data_variables": [
+        "u10",
+        "v10",
+        "msl"
+      ],
+      "attributes": {
+        "GRIB_centre": "ecmf",
+        "GRIB_centreDescription": "European Centre for Medium-Range Weather Forecasts",
+        "GRIB_subCentre": "0",
+        "Conventions": "CF-1.7",
+        "institution": "European Centre for Medium-Range Weather Forecasts",
+        "history": "2026-09-14T07:54 GRIB to CDM+CF via cfgrib-0.9.15.1/ecCodes-2.48.0 with {\"source\": \"tmpmwgx9uzi/data.grib\", \"filter_by_keys\": {\"stream\": [\"oper\"], \"stepType\": [\"instant\"]}, \"encode_cf\": [\"parameter\", \"time\", \"geography\", \"vertical\"]}"
+      },
+      "time": {
+        "time_coordinate": "valid_time",
+        "time_count": 4384,
+        "start": "2022-01-01 00:00:00",
+        "end": "2024-12-31 18:00:00",
+        "duplicate_timestamps": 0,
+        "median_step_hours": 6.0,
+        "unique_steps_hours": [
+          6.0
+        ]
+      },
+      "spatial": {
+        "latitude_coordinate": "latitude",
+        "longitude_coordinate": "longitude",
+        "latitude_min": 10.0,
+        "latitude_max": 20.0,
+        "longitude_min": 80.0,
+        "longitude_max": 90.0,
+        "latitude_count": 41,
+        "longitude_count": 41,
+        "inside_expected_region": true
+      },
+      "depth": {
+        "depth_coordinate": null,
+        "depth_count": null,
+        "depth_min": null,
+        "depth_max": null
+      },
+      "expected_variables": {
+        "expected": [
+          "u10",
+          "v10",
+          "msl"
+        ],
+        "found": [
+          "u10",
+          "v10",
+          "msl"
+        ],
+        "missing": [],
+        "all_expected_present": true,
+        "all_dataset_variables": [
+          "u10",
+          "v10",
+          "msl"
+        ]
+      },
+      "coordinate_validity": {
+        "latitude_invalid_count": 0,
+        "longitude_invalid_count": 0,
+        "latitude_out_of_normal_range": false,
+        "longitude_out_of_normal_range": false
+      },
+      "variables": [
+        {
+          "variable": "u10",
+          "exists": true,
+          "dimensions": [
+            "valid_time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "m s**-1",
+          "long_name": "10 metre U wind component",
+          "standard_name": "unknown",
+          "total_cells": 7369504,
+          "nan_count": 0,
+          "inf_count": 0,
+          "missing_percent": 0.0,
+          "min": -22.71343994140625,
+          "max": 27.497100830078125,
+          "mean": 0.494823157787323,
+          "std": 4.4402689933776855
+        },
+        {
+          "variable": "v10",
+          "exists": true,
+          "dimensions": [
+            "valid_time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "m s**-1",
+          "long_name": "10 metre V wind component",
+          "standard_name": "unknown",
+          "total_cells": 7369504,
+          "nan_count": 0,
+          "inf_count": 0,
+          "missing_percent": 0.0,
+          "min": -23.667434692382812,
+          "max": 25.513412475585938,
+          "mean": 1.3172531127929688,
+          "std": 3.9967474937438965
+        },
+        {
+          "variable": "msl",
+          "exists": true,
+          "dimensions": [
+            "valid_time",
+            "latitude",
+            "longitude"
+          ],
+          "shape": [
+            4384,
+            41,
+            41
+          ],
+          "dtype": "float32",
+          "units": "Pa",
+          "long_name": "Mean sea level pressure",
+          "standard_name": "air_pressure_at_mean_sea_level",
+          "total_cells": 7369504,
+          "nan_count": 0,
+          "inf_count": 0,
+          "missing_percent": 0.0,
+          "min": 97236.375,
+          "max": 102183.25,
+          "mean": 100887.5625,
+          "std": 428.7507019042969
+        }
+      ]
+    }
+  ]
+}
